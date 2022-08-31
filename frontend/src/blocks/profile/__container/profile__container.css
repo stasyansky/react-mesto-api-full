@@ -1,0 +1,21 @@
+.profile__container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: baseline;
+}
+@media screen and (min-width: 508px) {
+  .profile__container {
+    justify-content: start;
+  }
+}
+@media screen and (min-width: 694px) {
+  .profile__container {
+    max-width: 370px;
+  }
+}
+@media screen and (min-width: 900px) {
+  .profile__container {
+    max-width: 600px;
+  }
+}

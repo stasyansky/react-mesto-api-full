@@ -1,0 +1,10 @@
+.card__pic {
+  min-width: 100%;
+  min-height: 282px;
+  max-height: 282px;
+  background: #555;
+  object-fit: cover;
+}
+.card__pic:hover {
+  cursor: pointer;
+}

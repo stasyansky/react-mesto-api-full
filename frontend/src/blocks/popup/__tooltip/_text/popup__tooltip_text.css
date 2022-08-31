@@ -1,0 +1,14 @@
+.popup__tooltip_text {
+    width: 358px;
+    font-size: 24px;
+    font-weight: 800;
+    text-align: center;
+    margin: 32px 0 0 0;
+}
+@media screen and (max-width: 694px) {
+    .popup__tooltip_text {
+        width: 244px;
+        margin: 40px 0 0 0;
+        font-size: 20px;
+    }
+}

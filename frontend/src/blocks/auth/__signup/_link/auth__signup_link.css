@@ -1,0 +1,8 @@
+.auth__signup_link {
+    margin: 0;
+    text-decoration: none;
+    color: #ffffff;
+}
+.auth__signup_link:hover {
+    opacity: .6;
+}

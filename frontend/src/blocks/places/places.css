@@ -1,0 +1,11 @@
+.places {
+  width: 100%;
+  padding-top: 36px;
+  padding-bottom: 51px;
+}
+@media screen and (min-width: 900px) {
+  .places {
+    padding-top: 50px;
+    padding-bottom: 69px;
+  }
+}

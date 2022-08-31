@@ -1,0 +1,7 @@
+.popup-preview__img {
+  width: 100%;
+  min-width: 250px;
+  max-height: 530px;
+  min-height: 200px;
+  background: #555;
+}
