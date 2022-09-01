@@ -1,4 +1,4 @@
-const BASE_URL = 'https://auth.nomoreparties.co';
+const BASE_URL = 'https://st.ivanisov2b.nomoredomains.sbs';
 
 const errorHandler = (res) => {
     if (res.ok) {

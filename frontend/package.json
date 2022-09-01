@@ -15,6 +15,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "deploy": "npm run build && scp -r ./build/* st-ivanisov-pr15@130.193.39.246:/home/st-ivanisov-pr15/react-mesto-api-full/mesto-frontend",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
