@@ -8,16 +8,8 @@
     "dev": "nodemon app.js",
     "lint": "npx eslint ."
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/stasyansky/express-mesto-gha.git"
-  },
   "author": "Stanislav Ivanisov",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/stasyansky/express-mesto-gha/issues"
-  },
-  "homepage": "https://github.com/stasyansky/express-mesto-gha#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "celebrate": "^15.0.1",
