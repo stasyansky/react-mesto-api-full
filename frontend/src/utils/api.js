@@ -67,8 +67,7 @@ class Api {
 const api = new Api({
   url: 'https://st.ivanisov2b.nomoredomains.sbs',
   headers: {
-    // authorization: 'b1358c2e-a18d-4d01-8b45-12870e20906b',
-    authorization: `Bearer ${localStorage.getItem('jwt')}`,
+    Authorization: `Bearer ${localStorage.getItem('jwt')}`,
     'Content-Type': 'application/json',
   }
 });

@@ -67,7 +67,7 @@ function App() {
     }, [navigate]);
 
     function handleCardLike(card) {
-        const isLiked = card.likes.some(i => i._id === currentUser._id);
+        const isLiked = card.likes.includes(currentUser._id);
         api.toggleLike({cardId: card._id, isLikedByMe: isLiked})
             .then((newCard) => {
                 setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
@@ -135,7 +135,7 @@ function App() {
     function handleSignOut() {
         localStorage.removeItem('jwt');
         setLoggedIn(false);
-        navigate('/sign-in', { replace: true });
+        navigate('/signin', { replace: true });
     }
 
     function handleSignIn({email, password}) {
@@ -161,7 +161,7 @@ function App() {
             .then(() => {
                 setIsInfoToolTipPopupOpen(true);
                 setIsConfirm(true);
-                navigate('/sign-in', { replace: true });
+                navigate('/signin', { replace: true });
             })
             .catch((err) => {
                 if (err.status === 400) {
