@@ -36,3 +36,4 @@
 # Ссылки
 * [Фронтенд проекта `Mesto`](https://st.ivanisov.nomoredomains.sbs)
 * [Бэкенд проекта `Mesto`](https://st.ivanisov2и.nomoredomains.sbs)
+* IP-адрес сервера: 51.250.74.58
