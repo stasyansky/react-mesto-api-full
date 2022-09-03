@@ -4,11 +4,28 @@ class Api {
     this._headers = config.headers;
   }
 
-  _errorHandler = (res) => {
+  setNewToken() {
+    this._headers = {
+      ...this._headers,
+      Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+    };
+  }
+
+  _errorHandler = async (res) => {
     if (res.ok) {
       return res.json();
     }
-    return Promise.reject(`Ошибка: ${res.status}`);
+
+    let errorText = res.status;
+    const responseData = await res.json();
+
+    if (res.status === 400) {
+      errorText = responseData?.validation?.body?.message || "400 — Токен не передан или передан не в том формате";
+    } else if (res.status === 401) {
+      errorText = "401 — Переданный токен некорректен";
+    }
+
+    throw new Error(`Ошибка: ${responseData?.message || errorText}`);
   }
 
   getUserInfo() {

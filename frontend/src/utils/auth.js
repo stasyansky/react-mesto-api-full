@@ -1,17 +1,26 @@
 const BASE_URL = 'https://st.ivanisov2b.nomoredomains.sbs';
 
-const errorHandler = (res) => {
+const errorHandler = async (res) => {
     if (res.ok) {
         return res.json();
     }
-    return Promise.reject(`Ошибка: ${res.status}`);
+
+    let errorText = res.status;
+    const responseData = await res.json();
+
+    if (res.status === 400) {
+        errorText = responseData?.validation?.body?.message || "400 — Токен не передан или передан не в том формате";
+    } else if (res.status === 401) {
+        errorText = "401 — Переданный токен некорректен";
+    }
+
+    throw new Error(`Ошибка: ${responseData?.message || errorText}`);
 }
 
 export const onRegister = ({ email, password }) => {
     return fetch(`${BASE_URL}/signup`, {
         method: 'POST',
         headers: {
-            'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
@@ -26,7 +35,6 @@ export const onLogin = ({ email, password }) => {
     return fetch(`${BASE_URL}/signin`, {
         method: 'POST',
         headers: {
-            'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
@@ -43,17 +51,16 @@ export const onLogin = ({ email, password }) => {
                 return;
             }
         })
+        .catch((err) => console.error(err));
 };
 
 export const checkToken = (token) => {
     return fetch(`${BASE_URL}/users/me`, {
         method: 'GET',
         headers: {
-            'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`,
         }
     })
         .then(errorHandler)
-        // .then(data => data)
 }

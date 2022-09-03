@@ -16,7 +16,8 @@ const corsOptions = {
   origin: [
     'https://st.ivanisov.nomoredomains.sbs',
     'http://st.ivanisov.nomoredomains.sbs',
-    'http://localhost:3000',
+    'https://localhost:3001',
+    'http://localhost:3001',
   ],
   optionsSuccessStatus: 200,
 };
@@ -69,7 +70,7 @@ app.use('/users', auth, require('./routes/users'));
 app.use('/cards', auth, require('./routes/cards'));
 
 app.use(errorLogger);
-app.use('*', auth, () => {
+app.use('*', () => {
   throw new NotFoundError('Страница не найдена');
 });
 app.use(errors());

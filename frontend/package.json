@@ -13,9 +13,9 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "set PORT=3001 && react-scripts start",
     "build": "react-scripts build",
-    "deploy": "npm run build && scp -r ./build/* st-ivanisov-pr15@130.193.39.246:/home/st-ivanisov-pr15/react-mesto-api-full/mesto-frontend",
+    "deploy": "npm run build && scp -r ./build/* st-ivanisov@51.250.74.58:/home/st-ivanisov/backend-mesto-deploy/mesto-frontend",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

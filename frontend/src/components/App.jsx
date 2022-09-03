@@ -35,7 +35,7 @@ function App() {
         loggedIn &&
         api.getInitialCards()
             .then((cards) => {
-                setCards(cards);
+                setCards(cards.reverse());
             })
             .catch(err => console.error(err));
     }, [loggedIn]);
@@ -53,17 +53,12 @@ function App() {
         const token = localStorage.getItem('jwt')
         auth.checkToken(token)
             .then((res) => {
+                api.setNewToken();
                 setLoggedIn(true);
-                setEmail(res.data.email);
+                setEmail(res.email);
                 navigate('/', { replace: true });
             })
-            .catch((err) => {
-                if (err.status === 400) {
-                    console.error("400 — Токен не передан или передан не в том формате");
-                } else if (err.status === 401) {
-                    console.error("401 — Переданный токен некорректен");
-                }
-            })
+            .catch(err => console.error(err));
     }, [navigate]);
 
     function handleCardLike(card) {
@@ -134,7 +129,9 @@ function App() {
 
     function handleSignOut() {
         localStorage.removeItem('jwt');
+        api.setNewToken();
         setLoggedIn(false);
+        setCurrentUser({});
         navigate('/signin', { replace: true });
     }
 
@@ -142,17 +139,12 @@ function App() {
         auth
         .onLogin({email, password})
             .then(() => {
+                api.setNewToken();
                 setLoggedIn(true);
                 setEmail(email);
                 navigate('/', { replace: true });
             })
-            .catch((err) => {
-                if (err.status === 400) {
-                    console.error("400 - не передано одно из полей");
-                } else if (err.status === 401) {
-                    console.error("401 - пользователь с email не найден");
-                }
-            });
+            .catch((err) => console.error(err));
     }
 
     function handleSignUp({email, password}) {
@@ -164,9 +156,7 @@ function App() {
                 navigate('/signin', { replace: true });
             })
             .catch((err) => {
-                if (err.status === 400) {
-                    console.error("400 - некорректно заполнено одно из полей");
-                }
+                console.error(err);
                 setIsInfoToolTipPopupOpen(true);
                 setIsConfirm(false);
             });
