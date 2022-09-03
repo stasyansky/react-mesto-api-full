@@ -70,7 +70,7 @@ app.use('/users', auth, require('./routes/users'));
 app.use('/cards', auth, require('./routes/cards'));
 
 app.use(errorLogger);
-app.use('*', () => {
+app.use('*', auth, () => {
   throw new NotFoundError('Страница не найдена');
 });
 app.use(errors());
