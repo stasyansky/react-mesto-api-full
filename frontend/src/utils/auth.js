@@ -51,7 +51,6 @@ export const onLogin = ({ email, password }) => {
                 return;
             }
         })
-        .catch((err) => console.error(err));
 };
 
 export const checkToken = (token) => {
